@@ -10,7 +10,6 @@
 		CC3A67722A3A0F85001FA21E /* IndexViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3A67712A3A0F85001FA21E /* IndexViewModel.swift */; };
 		CC3A67742A3A3427001FA21E /* SongFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3A67732A3A3427001FA21E /* SongFormViewModel.swift */; };
 		CC3A67762A3A34A3001FA21E /* ArtistFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3A67752A3A34A3001FA21E /* ArtistFormViewModel.swift */; };
-		CC3A67782A3A38A0001FA21E /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3A67772A3A38A0001FA21E /* AudioManager.swift */; };
 		CC3A677B2A3A3A08001FA21E /* SongForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3A677A2A3A3A08001FA21E /* SongForm.swift */; };
 		CC3A677D2A3A3A45001FA21E /* ArtistForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3A677C2A3A3A45001FA21E /* ArtistForm.swift */; };
 		CC3A677F2A3A3A68001FA21E /* Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3A677E2A3A3A68001FA21E /* Index.swift */; };
@@ -44,7 +43,6 @@
 		CC3A67712A3A0F85001FA21E /* IndexViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewModel.swift; sourceTree = "<group>"; };
 		CC3A67732A3A3427001FA21E /* SongFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongFormViewModel.swift; sourceTree = "<group>"; };
 		CC3A67752A3A34A3001FA21E /* ArtistFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistFormViewModel.swift; sourceTree = "<group>"; };
-		CC3A67772A3A38A0001FA21E /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		CC3A677A2A3A3A08001FA21E /* SongForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongForm.swift; sourceTree = "<group>"; };
 		CC3A677C2A3A3A45001FA21E /* ArtistForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistForm.swift; sourceTree = "<group>"; };
 		CC3A677E2A3A3A68001FA21E /* Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Index.swift; sourceTree = "<group>"; };
@@ -86,14 +84,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CC3A67792A3A39CA001FA21E /* views */ = {
+		CC3A67792A3A39CA001FA21E /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				CC3A677A2A3A3A08001FA21E /* SongForm.swift */,
 				CC3A677C2A3A3A45001FA21E /* ArtistForm.swift */,
 				CC3A677E2A3A3A68001FA21E /* Index.swift */,
 			);
-			path = views;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CC3A67802A3A3AF0001FA21E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				CC3A67712A3A0F85001FA21E /* IndexViewModel.swift */,
+				CC3A67732A3A3427001FA21E /* SongFormViewModel.swift */,
+				CC3A67752A3A34A3001FA21E /* ArtistFormViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		CC4294292A39493D0073DB57 = {
@@ -119,16 +127,13 @@
 		CC4294342A39493D0073DB57 /* ListenMusic */ = {
 			isa = PBXGroup;
 			children = (
-				CC3A67792A3A39CA001FA21E /* views */,
+				CC3A67802A3A3AF0001FA21E /* ViewModels */,
+				CC3A67792A3A39CA001FA21E /* Views */,
 				CC4294352A39493D0073DB57 /* ListenMusicApp.swift */,
 				CC4294372A39493D0073DB57 /* ContentView.swift */,
 				CC4294392A39493E0073DB57 /* Assets.xcassets */,
-				CC3A67712A3A0F85001FA21E /* IndexViewModel.swift */,
 				CC42943B2A39493E0073DB57 /* ListenMusic.entitlements */,
 				CC42943C2A39493E0073DB57 /* Preview Content */,
-				CC3A67732A3A3427001FA21E /* SongFormViewModel.swift */,
-				CC3A67752A3A34A3001FA21E /* ArtistFormViewModel.swift */,
-				CC3A67772A3A38A0001FA21E /* AudioManager.swift */,
 			);
 			path = ListenMusic;
 			sourceTree = "<group>";
@@ -288,7 +293,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC3A67782A3A38A0001FA21E /* AudioManager.swift in Sources */,
 				CC4294382A39493D0073DB57 /* ContentView.swift in Sources */,
 				CC3A677B2A3A3A08001FA21E /* SongForm.swift in Sources */,
 				CC3A67742A3A3427001FA21E /* SongFormViewModel.swift in Sources */,

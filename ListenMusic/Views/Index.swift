@@ -6,7 +6,20 @@
 //
 
 import SwiftUI
+import AVFoundation
 
+class AudioManager: ObservableObject {
+    @Published var player = AVPlayer()
+    
+    func play(url: String) {
+        guard let url = URL(string: url) else {
+            return
+        }
+        
+        player = AVPlayer(url: url)
+        player.play()
+    }
+}
 
 struct SongCard: View {
     @State var click: Bool = false
