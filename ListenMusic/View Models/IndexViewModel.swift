@@ -7,20 +7,6 @@
 
 import SwiftUI
 
-
-struct Song : Codable {
-    let id: Int
-    let name: String
-    let file: String
-    let image: String
-    let artist: Artist
-}
-
-struct Artist: Codable {
-    let id: Int
-    let name: String
-}
-
 class IndexViewModel : ObservableObject {
     @Published var songs: [Song] = []
     
