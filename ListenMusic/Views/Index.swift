@@ -12,7 +12,7 @@ struct SongCard: View {
     
     let song: Song
     
-    var audioManager = AudioManager()
+    //@EnvironmentObject var audioManager: AudioManager
     
     var body: some View {
         HStack {
@@ -44,9 +44,6 @@ struct SongCard: View {
                 }
         }
         .padding(.horizontal)
-        .onTapGesture {
-            audioManager.play(url: song.file)
-        }
     }
 }
 
@@ -54,22 +51,44 @@ struct SongCard: View {
 struct Index : View {
     @StateObject var viewModel: IndexViewModel = IndexViewModel()
     
+    //@EnvironmentObject var audioManager: AudioManager
+    
+    @State private var presentedSongs: [Song] = []
+    
+    @StateObject var mediaPlayerViewModel = MediaPlayerViewModel()
+    
+    
     var body: some View {
-        ScrollView {
-            VStack(spacing: 10) {
-                ForEach(viewModel.songs, id: \.id) { song in
-                    SongCard(song: song)
+        ZStack {
+            ScrollView {
+                VStack {
+                    ForEach(viewModel.songs) { song in
+                        SongCard(song: song)
+                            .onTapGesture {
+                                mediaPlayerViewModel.setMusic(song: song)
+                            }
+                    }
                 }
             }
-        }
-        .padding()
-        .onAppear {
-            viewModel.fetch()
-        }
-        .tag(0)
-        .tabItem {
-            Image(systemName: "heart")
-            Text("Index")
+            .padding()
+            .onAppear {
+                viewModel.fetch()
+            }
+            .tag(0)
+            .tabItem {
+                Image(systemName: "heart")
+                Text("Index")
+            }
+            
+            MediaPlayer(viewModel: mediaPlayerViewModel)
         }
     }
+}
+
+
+struct IndexView_Previews: PreviewProvider {
+   static var previews: some View {
+       Index()
+           .preferredColorScheme(.dark)
+   }
 }

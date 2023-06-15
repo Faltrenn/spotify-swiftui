@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct ListenMusicApp: App {
+    @StateObject var audioManager: AudioManager = AudioManager()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(audioManager)
         }
     }
 }

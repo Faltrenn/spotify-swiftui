@@ -7,15 +7,33 @@
 
 import AVFoundation
 
+extension AVPlayer {
+    var isPlaying: Bool {
+        return rate != 0 && error == nil
+    }
+}
+
 class AudioManager: ObservableObject {
     @Published var player = AVPlayer()
     
-    func play(url: String) {
-        guard let url = URL(string: url) else {
-            return
+    @Published var isPlaying: Bool = false
+    
+    func play(url: String? = nil) {
+        if let url = url {
+            guard let url = URL(string: url) else {
+                return
+            }
+            player = AVPlayer(url: url)
         }
         
-        player = AVPlayer(url: url)
         player.play()
+    }
+    
+    func pause() {
+        player.pause()
+    }
+    
+    func isPlay() -> Bool {
+        player.isPlaying
     }
 }

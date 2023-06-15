@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Song : Codable {
+struct Song : Identifiable, Hashable, Codable {
     let id: Int
     let name: String
     let file: String
@@ -15,7 +15,7 @@ struct Song : Codable {
     let artist: Artist
 }
 
-struct Artist: Codable {
+struct Artist: Codable, Hashable {
     let id: Int
     let name: String
 }
