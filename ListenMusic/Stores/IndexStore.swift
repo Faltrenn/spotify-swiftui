@@ -18,14 +18,16 @@ class AudioManager: ObservableObject {
     
     @Published var isPlaying: Bool = false
     
-    func play(url: String? = nil) {
-        if let url = url {
-            guard let url = URL(string: url) else {
+    @Published var song: Song? = nil
+    
+    func play(song: Song? = nil) {
+        if let song = song {
+            guard let url = URL(string: song.file) else {
                 return
             }
             player = AVPlayer(url: url)
+            self.song = song
         }
-        
         player.play()
     }
     

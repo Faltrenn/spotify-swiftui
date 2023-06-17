@@ -120,19 +120,6 @@ struct PlayerView: View {
                 }
                 .padding(.horizontal, 20)
             }
-            .onAppear {
-                audioManager.play(url: song.file)
-            }
         }
     }
 }
-
-
-struct PlayerView_Previews: PreviewProvider {
-    static var previews: some View {
-        PlayerView(song: Song(id: 0, name: "Musica", file: "", image: "", artist: Artist(id: 0, name: "Musico")))
-            .preferredColorScheme(.dark)
-    }
-}
-
-
