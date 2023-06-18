@@ -47,11 +47,7 @@ struct MediaPlayer : View {
                         Image(systemName: audioManager.isPlaying ? "pause.fill" : "play.fill")
                             .padding(.horizontal, 10)
                             .onTapGesture {
-                                if audioManager.isPlaying {
-                                    audioManager.pause()
-                                } else {
-                                    audioManager.play()
-                                }
+                                audioManager.playPause()
                             }
                     }
                     .font(.title)

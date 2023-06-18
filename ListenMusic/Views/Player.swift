@@ -16,6 +16,8 @@ struct PlayerView: View {
     
     @EnvironmentObject var audioManager: AudioManager
     
+    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    
     let song: Song?
     
     var body: some View {
@@ -58,7 +60,8 @@ struct PlayerView: View {
                     }
                     .padding(.bottom)
                     
-                    Slider(value: $slider)
+                    Slider(value: $slider, in: 0...100)
+                    Text("\(audioManager.currentTimePercent)")
                     
                     HStack {
                         Image(systemName: "shuffle")
@@ -82,11 +85,7 @@ struct PlayerView: View {
                         Image(systemName: audioManager.isPlaying ? "pause.circle.fill" : "play.circle.fill")
                             .font(.system(size: 70))
                             .onTapGesture {
-                                if audioManager.isPlaying {
-                                    audioManager.player.pause()
-                                } else {
-                                    audioManager.player.play()
-                                }
+                                audioManager.playPause()
                             }
                         Spacer()
                         Image(systemName: "forward.end.fill")
