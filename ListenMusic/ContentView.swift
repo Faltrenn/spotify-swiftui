@@ -22,6 +22,8 @@ struct PlaylistCard : View {
     let nome: String
     let type: Bool
     
+    let color: Color = .white.opacity(0.15)
+    
     var body: some View {
         NavigationLink(destination: Text(nome)) {
             HStack {
@@ -55,7 +57,7 @@ struct PlaylistCard : View {
                     .multilineTextAlignment(.leading)
                 Spacer()
             }
-            .background(.gray)
+            .background(color)
             .frame(height: 50)
             .cornerRadius(5)
             .bold()
@@ -121,7 +123,7 @@ struct NewMusic: View {
                     .padding(.top, 5)
                 }
                 .padding(.horizontal)
-                .frame(width: UIScreen.main.bounds.width * 0.55)
+                .frame(width: UIScreen.main.bounds.width * 0.56)
             }
             .background(.gray)
             .cornerRadius(5)
@@ -158,6 +160,9 @@ struct Mixes: View {
 }
 
 struct Container: View {
+    
+    let color: Color = .white.opacity(0.15)
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -169,13 +174,13 @@ struct Container: View {
                             .font(.system(size: 14))
                             .padding(.horizontal, 15)
                             .padding(.vertical, 10)
-                            .background(.gray)
+                            .background(color)
                             .cornerRadius(30)
                         Text("Podcasts e programas")
                             .font(.system(size: 14))
                             .padding(.horizontal, 15)
                             .padding(.vertical, 10)
-                            .background(.gray)
+                            .background(color)
                             .cornerRadius(30)
                         Spacer()
                     }
@@ -347,12 +352,98 @@ struct Playlist: View {
     }
 }
 
+enum TabbedPages: Int, CaseIterable {
+    case home = 0
+    case search
+    case library
+    
+    var title: String {
+        switch self {
+        case .home:
+            return "Home"
+        case .search:
+            return "Search"
+        case .library:
+            return "Your library"
+        }
+        
+    }
+    
+    var unselectedIcon: String {
+        switch self {
+        case .home:
+            return "home"
+        case .search:
+            return "search"
+        case .library:
+            return "library"
+        }
+    }
+    var selectedIcon: String {
+        switch self {
+        case .home:
+            return "home.fill"
+        case .search:
+            return "search.fill"
+        case .library:
+            return "library.fill"
+        }
+    }
+}
+
+
+extension View {
+    @ViewBuilder func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
+    }
+}
+
 
 struct ContentView: View {
+    @State var selection = 0
+
     var body: some View {
-        Playlist()
-        //Container()
-        //Index()
+        ZStack(alignment: .bottom) {
+            TabView(selection: $selection) {
+                //Playlist()
+                Container()
+                    .tag(0)
+                Index()
+                    .tag(2)
+            }
+            
+            ZStack {
+                HStack {
+                    ForEach(TabbedPages.allCases, id: \.self){ page in
+                        VStack(spacing: 5) {
+                            Image(selection == page.rawValue ? page.selectedIcon : page.unselectedIcon)
+                                .renderingMode(.template)
+                            Text(page.title)
+                                .font(.system(size: 10))
+                        }
+                        .onTapGesture {
+                            selection = page.rawValue
+                        }
+                        .if(selection != page.rawValue) { view in
+                            view
+                                .foregroundColor(.gray)
+                        }
+                        if TabbedPages.allCases.last != page {
+                            Spacer()
+                        }
+                    }
+                }
+                .padding(.top, 15)
+                .padding(.horizontal, 50)
+            }
+            .frame(width: UIScreen.main.bounds.width, height: 100, alignment: .top)
+            .background(.black)
+        }
+        .ignoresSafeArea()
     }
 }
 
