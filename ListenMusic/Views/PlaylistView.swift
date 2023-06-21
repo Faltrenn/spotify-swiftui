@@ -58,7 +58,11 @@ struct PlaylistSongCard: View {
     }
 }
 
-struct Playlist: View {
+struct PlaylistView: View {
+    
+    let name: String
+    let author: String
+    
     var body: some View {
         ZStack(alignment: .topLeading) {
             Image(systemName: "chevron.left")
@@ -71,7 +75,7 @@ struct Playlist: View {
                 Spacer()
                     .frame(height: 320)
                 VStack(alignment: .leading) {
-                    Text("Playlist")
+                    Text(name)
                         .font(.title)
                         .bold()
                     HStack {
@@ -79,10 +83,10 @@ struct Playlist: View {
                             .frame(width: 25)
                             .foregroundColor(.green)
                             .overlay {
-                                Text("A")
+                                Text(author.prefix(1).uppercased())
                                     .foregroundColor(.black)
                             }
-                        Text("Autor")
+                        Text(author)
                             .bold()
                     }
                     HStack {

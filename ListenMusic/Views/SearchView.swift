@@ -51,7 +51,7 @@ struct MusicGenre: View {
     }
 }
 
-struct Search: View {
+struct SearchView: View {
     @State var input = ""
     @State var path = NavigationPath()
     @State var scroll = CGFloat.zero

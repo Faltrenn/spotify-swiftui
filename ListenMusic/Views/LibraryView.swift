@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-struct Library: View {
+struct LibraryView: View {
     var body: some View {
         VStack(spacing: 25) {
             HStack {

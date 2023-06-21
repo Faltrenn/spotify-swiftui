@@ -63,11 +63,11 @@ struct ContentView: View {
             ZStack {
                 switch selectedPage {
                 case .home:
-                    Home()
+                    HomeView()
                 case .search:
-                    Search()
+                    SearchView()
                 case .library:
-                    Library()
+                    LibraryView()
                 }
             }
             .padding(.horizontal, 15)

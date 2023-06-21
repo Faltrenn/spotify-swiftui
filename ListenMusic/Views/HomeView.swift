@@ -25,13 +25,14 @@ struct HomeHead: View {
 }
 
 struct PlaylistCard : View {
-    let nome: String
+    let name: String
+    let author: String
     let type: Bool
     
     let color: Color = .white.opacity(0.15)
     
     var body: some View {
-        NavigationLink(destination: Text(nome)) {
+        NavigationLink(destination: PlaylistView(name: name, author: author)) {
             HStack {
                 if type {
                     Grid(horizontalSpacing: 0, verticalSpacing: 0) {
@@ -58,7 +59,7 @@ struct PlaylistCard : View {
                         .fill(.red)
                         .aspectRatio(1.0, contentMode: .fit)
                 }
-                Text(nome)
+                Text(name)
                     .font(.system(size: 16))
                     .multilineTextAlignment(.leading)
                 Spacer()
@@ -149,7 +150,7 @@ struct MixCard: View {
     }
 }
 
-struct Home: View {
+struct HomeView: View {
     
     let color: Color = .white.opacity(0.15)
     
@@ -177,16 +178,16 @@ struct Home: View {
                     
                     Grid(horizontalSpacing: 7, verticalSpacing: 7) {
                         GridRow {
-                            PlaylistCard(nome: "PH", type: true)
-                            PlaylistCard(nome: "FK", type: true)
+                            PlaylistCard(name: "PH", author: "manel", type: true)
+                            PlaylistCard(name: "FK", author: "manel", type: true)
                         }
                         GridRow {
-                            PlaylistCard(nome: "DJ DELIPE ALVES", type: false)
-                            PlaylistCard(nome: "Brazilian Phonk Mano", type: false)
+                            PlaylistCard(name: "DJ DELIPE ALVES", author: "Spotfy", type: false)
+                            PlaylistCard(name: "Brazilian Phonk Mano", author: "Spotify", type: false)
                         }
                         GridRow {
-                            PlaylistCard(nome: "Tarcísio do Acordeon", type: false)
-                            PlaylistCard(nome: "Playlist com muitos caracteres", type: false)
+                            PlaylistCard(name: "Tarcísio do Acordeon", author: "Spotify", type: false)
+                            PlaylistCard(name: "Playlist com muitos caracteres", author: "Spotify", type: false)
                         }
                     }
                     
