@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		CC05905B2A3D3F52006FDB29 /* MediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05905A2A3D3F52006FDB29 /* MediaPlayer.swift */; };
 		CC05905D2A3D4253006FDB29 /* SongCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05905C2A3D4253006FDB29 /* SongCard.swift */; };
+		CC32960E2A40C104007F4941 /* NavigationTransitions in Frameworks */ = {isa = PBXBuildFile; productRef = CC32960D2A40C104007F4941 /* NavigationTransitions */; };
+		CC3296102A40C344007F4941 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC32960F2A40C344007F4941 /* Search.swift */; };
+		CC3296132A40CAD3007F4941 /* SwiftUITrackableScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = CC3296122A40CAD3007F4941 /* SwiftUITrackableScrollView */; };
 		CC3A67722A3A0F85001FA21E /* IndexViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3A67712A3A0F85001FA21E /* IndexViewModel.swift */; };
 		CC3A677F2A3A3A68001FA21E /* Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3A677E2A3A3A68001FA21E /* Index.swift */; };
 		CC3A67832A3A3F10001FA21E /* IndexModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3A67822A3A3F10001FA21E /* IndexModel.swift */; };
@@ -43,6 +46,7 @@
 /* Begin PBXFileReference section */
 		CC05905A2A3D3F52006FDB29 /* MediaPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayer.swift; sourceTree = "<group>"; };
 		CC05905C2A3D4253006FDB29 /* SongCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCard.swift; sourceTree = "<group>"; };
+		CC32960F2A40C344007F4941 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		CC3A67712A3A0F85001FA21E /* IndexViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewModel.swift; sourceTree = "<group>"; };
 		CC3A677E2A3A3A68001FA21E /* Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Index.swift; sourceTree = "<group>"; };
 		CC3A67822A3A3F10001FA21E /* IndexModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexModel.swift; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC3296132A40CAD3007F4941 /* SwiftUITrackableScrollView in Frameworks */,
+				CC32960E2A40C104007F4941 /* NavigationTransitions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +99,7 @@
 				CC3A67872A3A6521001FA21E /* Player.swift */,
 				CC05905A2A3D3F52006FDB29 /* MediaPlayer.swift */,
 				CC05905C2A3D4253006FDB29 /* SongCard.swift */,
+				CC32960F2A40C344007F4941 /* Search.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -198,6 +205,10 @@
 			dependencies = (
 			);
 			name = ListenMusic;
+			packageProductDependencies = (
+				CC32960D2A40C104007F4941 /* NavigationTransitions */,
+				CC3296122A40CAD3007F4941 /* SwiftUITrackableScrollView */,
+			);
 			productName = ListenMusic;
 			productReference = CC4294322A39493D0073DB57 /* ListenMusic.app */;
 			productType = "com.apple.product-type.application";
@@ -270,6 +281,10 @@
 				Base,
 			);
 			mainGroup = CC4294292A39493D0073DB57;
+			packageReferences = (
+				CC32960C2A40C104007F4941 /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */,
+				CC3296112A40CAD3007F4941 /* XCRemoteSwiftPackageReference "trackable-scroll-view" */,
+			);
 			productRefGroup = CC4294332A39493D0073DB57 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -319,6 +334,7 @@
 				CC3A677F2A3A3A68001FA21E /* Index.swift in Sources */,
 				CC3A67862A3A3FD0001FA21E /* IndexStore.swift in Sources */,
 				CC05905D2A3D4253006FDB29 /* SongCard.swift in Sources */,
+				CC3296102A40C344007F4941 /* Search.swift in Sources */,
 				CC3A67722A3A0F85001FA21E /* IndexViewModel.swift in Sources */,
 				CC3A67832A3A3F10001FA21E /* IndexModel.swift in Sources */,
 			);
@@ -672,6 +688,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CC32960C2A40C104007F4941 /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/davdroman/swiftui-navigation-transitions";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.2;
+			};
+		};
+		CC3296112A40CAD3007F4941 /* XCRemoteSwiftPackageReference "trackable-scroll-view" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maxnatchanon/trackable-scroll-view";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CC32960D2A40C104007F4941 /* NavigationTransitions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC32960C2A40C104007F4941 /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */;
+			productName = NavigationTransitions;
+		};
+		CC3296122A40CAD3007F4941 /* SwiftUITrackableScrollView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC3296112A40CAD3007F4941 /* XCRemoteSwiftPackageReference "trackable-scroll-view" */;
+			productName = SwiftUITrackableScrollView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CC42942A2A39493D0073DB57 /* Project object */;
 }

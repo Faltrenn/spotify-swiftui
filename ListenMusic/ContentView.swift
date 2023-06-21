@@ -207,7 +207,10 @@ struct Container: View {
                     }
                     
                 }
+                .padding(.bottom, 95)
             }
+            .ignoresSafeArea(edges: .bottom)
+            .clipped()
         }
     }
 }
@@ -390,144 +393,202 @@ enum TabbedPages: Int, CaseIterable {
     }
 }
 
-
-extension View {
-    @ViewBuilder func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
-        if condition {
-            transform(self)
-        } else {
-            self
-        }
-    }
-}
-
-
-struct SearchHead : View {
-    @State var input = ""
+struct Library: View {
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack(spacing: 20) {
-                Text("Search")
-                    .bold()
-                    .font(.system(size: 25))
-                Spacer()
-                Image("camera")
-            }
-            .font(.system(size: 23))
-            .padding(.top, 40)
-            
+        VStack(spacing: 25) {
             HStack {
+                Circle()
+                    .frame(width: 40)
+                    .foregroundColor(.green)
+                    .overlay {
+                        Text("E")
+                            .foregroundColor(.black)
+                            .bold()
+                            .font(.title2)
+                    }
+                Text("Your library")
+                    .font(.system(size: 30))
+                    .bold()
+                Spacer()
                 Image("search")
-                    .resizable()
                     .renderingMode(.template)
-                    .foregroundColor(.black)
-                    .frame(width: 30, height: 30)
-                TextField(
-                    "",
-                    text: $input,
-                    prompt: Text("What do you want to listen to?")
-                        .foregroundColor(.gray)
-                )
-                    .foregroundColor(.gray)
-                    .cornerRadius(5)
-                    .font(.system(size: 18))
+                    .padding(.trailing, 15)
+                Image(systemName: "plus")
+                    .font(.title)
             }
-            .padding()
-            .background(.white)
-            .cornerRadius(7)
             
-            Text("Browse All")
-                .bold()
-                .font(.system(size: 18))
-                .padding(.vertical, 10)
-            
-            Grid(horizontalSpacing: 15, verticalSpacing: 15) {
-                ForEach(0...7, id: \.self) { _ in
-                    GridRow {
-                        ForEach(0...1, id: \.self){ _ in
-                            RoundedRectangle(cornerRadius: 10)
-                                .aspectRatio(1.5,contentMode: .fit)
-                                .overlay {
-                                    HStack(alignment: .top, spacing: 0) {
-                                        Text("Made for you")
-                                            .foregroundColor(.black)
-                                            .font(.system(size: 18))
-                                            .padding(EdgeInsets(top: 10, leading: 7, bottom: 0, trailing: 0))
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                        VStack(alignment: .trailing) {
-                                            Spacer()
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .fill(.red)
-                                                .frame(width: 90, height: 90)
-                                                .rotationEffect(.degrees(30))
-                                                .offset(CGSize(width: 20, height: 0))
-                                        }
-                                    }
-                                }
-                                .clipped()
-                        }
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    
+                    Text("X")
+                        .foregroundColor(.white)
+                        .frame(width: 30, height: 30)
+                        .background(.white.opacity(0.15))
+                        .cornerRadius(30)
+                        
+                    ForEach(0...9, id:\.self) { _ in
+                        Text("Playlists")
+                            .padding(.horizontal, 15)
+                            .padding(.vertical, 5)
+                            .background(.white.opacity(0.15))
+                            .cornerRadius(20)
                     }
                 }
             }
-        }
-    }
-}
-
-struct Search: View {
-    var body: some View {
-        ScrollView(.vertical) {
-            VStack {
-                SearchHead()
-            }
-        }
-    }
-}
-
-
-struct ContentView: View {
-    @State var selection = 1
-
-    var body: some View {
-        ZStack(alignment: .bottom) {
-            TabView(selection: $selection) {
-                Container()
-                    .tag(0)
-                Search()
-                    .tag(1)
-            }
-            .padding(.horizontal, 15)
-
-            ZStack {
+            
+            ScrollView {
                 HStack {
-                    ForEach(TabbedPages.allCases, id: \.self){ page in
-                        VStack(spacing: 5) {
-                            Image(selection == page.rawValue ? page.selectedIcon : page.unselectedIcon)
-                                .renderingMode(.template)
-                            Text(page.title)
-                                .font(.system(size: 10))
+                    Image(systemName: "arrow.up.arrow.down")
+                        .font(.system(size: 14))
+                        .bold()
+                    Text("Recents")
+                        .bold()
+                        .font(.title3)
+                    
+                    Spacer()
+                    
+                    Image(systemName: "square.grid.2x2")
+                        .font(.system(size: 18))
+                }
+                VStack {
+                    HStack {
+                        Rectangle()
+                            .fill(LinearGradient(colors: [.blue, .white], startPoint: .topLeading, endPoint: .bottomTrailing))
+                            .frame(width: 60, height: 60)
+                            .cornerRadius(5)
+                            .overlay {
+                                Image(systemName: "heart.fill")
+                                    .foregroundColor(.white)
+                                    .font(.title2)
+                            }
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Liked Songs")
+                                .bold()
+                                .font(.title3)
+                            HStack(spacing: 5) {
+                                Image("pin")
+                                    .resizable()
+                                    .frame(width: 17, height: 17)
+                                Text("Playlist 240 songs")
+                                    .foregroundColor(.gray)
+                            }
                         }
-                        .onTapGesture {
-                            selection = page.rawValue
+                        Spacer()
+                    }
+                    HStack {
+                        Rectangle()
+                            .fill(.green.opacity(0.5))
+                            .frame(width: 60, height: 60)
+                            .cornerRadius(5)
+                            .overlay {
+                                Image(systemName: "bell.fill")
+                                    .foregroundColor(.green)
+                                    .font(.title2)
+                            }
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("New Episodes")
+                                .bold()
+                                .font(.title3)
+                            HStack(spacing: 5) {
+                                Image("pin")
+                                    .resizable()
+                                    .frame(width: 17, height: 17)
+                                Text("Updates Mar 31, 2023")
+                                    .foregroundColor(.gray)
+                            }
                         }
-                        .if(selection != page.rawValue) { view in
-                            view
+                        Spacer()
+                    }
+                    HStack {
+                        Rectangle()
+                            .fill(.green.opacity(0.5))
+                            .frame(width: 60, height: 60)
+                            .cornerRadius(5)
+                            .overlay {
+                                Image(systemName: "bookmark.fill")
+                                    .foregroundColor(.green)
+                                    .font(.title2)
+                            }
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Your Episodes")
+                                .bold()
+                                .font(.title3)
+                            HStack(spacing: 5) {
+                                Image("pin")
+                                    .resizable()
+                                    .frame(width: 17, height: 17)
+                                Text("Autor da playlist")
+                                    .foregroundColor(.gray)
+                            }
+                        }
+                        Spacer()
+                    }
+                    
+                    ForEach(0...9, id: \.self) { _ in
+                        HStack {
+                            Rectangle()
+                                .fill(.red)
+                                .frame(width: 60, height: 60)
+                                .cornerRadius(5)
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Your Episodes")
+                                    .bold()
+                                    .font(.title3)
+                            Text("Autor da playlist")
                                 .foregroundColor(.gray)
-                        }
-                        if TabbedPages.allCases.last != page {
+                            }
                             Spacer()
                         }
                     }
                 }
-                .padding(.top, 15)
-                .padding(.horizontal, 50)
+                .padding(.bottom, 95)
             }
-            .frame(width: UIScreen.main.bounds.width, height: 100, alignment: .top)
-            .background(.black)
         }
-        .ignoresSafeArea()
     }
 }
 
+struct ContentView: View {
+    @State var selectedPage: TabbedPages = .home
+    var body: some View {
+        ZStack(alignment: .bottom) {
+            ZStack {
+                switch selectedPage {
+                case .home:
+                    Container()
+                case .search:
+                    Search()
+                case .library:
+                    Library()
+                }
+            }
+            .padding(.horizontal, 15)
+            .ignoresSafeArea(edges: .bottom)
+            HStack(alignment: .top) {
+                ForEach(TabbedPages.allCases, id: \.self) { page in
+                    VStack {
+                        Image(page == selectedPage ? page.selectedIcon : page.unselectedIcon)
+                            .renderingMode(.template)
+                        Text(page.title)
+                            .font(.system(size: 10))
+
+                    }
+                    .foregroundColor(selectedPage == page ? .white : .gray)
+                    .onTapGesture {
+                        selectedPage = page
+                    }
+                    if page != TabbedPages.allCases.last {
+                        Spacer()
+                    }
+                }
+            }
+            .padding(.top, 15)
+            .padding(.horizontal, 50)
+            .frame(height: 95, alignment: .top)
+            .background(LinearGradient(colors: [.black.opacity(0.85), .black.opacity(0.95), .black], startPoint: .top, endPoint: .bottom))
+        }
+        .ignoresSafeArea(edges: .bottom)
+    }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
