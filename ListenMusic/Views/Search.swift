@@ -180,8 +180,6 @@ struct Search2: View {
 
 struct Search_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-            .preferredColorScheme(.dark)
-            .environmentObject(AudioManager())
+        ContentView(selectedPage: .search)
     }
 }

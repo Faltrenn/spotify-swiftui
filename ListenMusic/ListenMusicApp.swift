@@ -13,7 +13,7 @@ struct ListenMusicApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(selectedPage: .home)
                 .environmentObject(audioManager)
         }
     }
