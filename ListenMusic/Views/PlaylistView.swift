@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUITrackableScrollView
 
 
 struct PlaylistSongCard: View {
@@ -63,18 +64,46 @@ struct PlaylistView: View {
     let name: String
     let author: String
     
+    @State var scroll: CGFloat = .zero
+    
+    @State var imageWidthHeight: CGFloat = 300
+    
+    @State var imageOpacity: Double = 1
+    
+    @State var gradientHeightBottom: CGFloat = 0.5
+    @State var gradientHeightTop: CGFloat = 0
+    
+    let screenWidth = Main.screen.width
+    
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            Image(systemName: "chevron.left")
-                .font(.title3)
+        ZStack(alignment: .top) {
+            LinearGradient(colors: [.purple, .black], startPoint: UnitPoint(x: 0.5, y: gradientHeightTop), endPoint: UnitPoint(x: 0.5, y: gradientHeightBottom)).edgesIgnoringSafeArea(.all)
+            HStack {
+                Image(systemName: "chevron.left")
+                    .font(.title3)
+                Spacer()
+            }
+            .padding(.horizontal, Main.spaces.horizontal)
+            .zIndex(1)
             Rectangle()
                 .fill(.red)
-                .aspectRatio(contentMode: .fit)
-                .padding(.horizontal, 50)
-            ScrollView {
-                Spacer()
-                    .frame(height: 320)
+                .opacity(imageOpacity)
+                .frame(width: imageWidthHeight, height: imageWidthHeight)
+                .onChange(of: scroll) { newValue in
+                    let scrollRate = scroll * 0.4
+                    if scrollRate <= 80 {
+                        let newImageWidthHeight = 300 - scrollRate
+                        imageWidthHeight = newImageWidthHeight < Main.screen.width ? newImageWidthHeight : Main.screen.width
+                        imageOpacity = 1 - Double(scrollRate) * 1.25 / 100
+                        gradientHeightBottom = (1 - scroll / screenWidth) / 2
+                        gradientHeightTop = -scrollRate / screenWidth / 2
+                    }
+                }
+            
+            TrackableScrollView(contentOffset: $scroll) {
                 VStack(alignment: .leading) {
+                    Spacer()
+                        .frame(height: 300)
                     Text(name)
                         .font(.title)
                         .bold()
@@ -145,11 +174,19 @@ struct PlaylistView: View {
                     }
                 }
             }
+            .padding(.horizontal, Main.spaces.horizontal)
+            .clipped()
         }
+        .padding(.horizontal, -Main.spaces.horizontal)
     }
 }
+
 struct Playlist_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(selectedPage: .home)
+        ZStack {
+            PlaylistView(name: "Playlist", author: "Manel")
+                .preferredColorScheme(.dark)
+        }
+        .padding(.horizontal, Main.spaces.horizontal)
     }
 }

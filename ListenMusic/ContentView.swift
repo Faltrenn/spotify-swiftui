@@ -18,6 +18,13 @@ struct Env {
     static let apiUrl = ips[1]
 }
 
+struct Main {
+    static let screen = UIScreen.main.bounds.size
+    struct spaces {
+        static let horizontal: CGFloat = 16
+    }
+}
+
 enum TabbedPages: Int, CaseIterable {
     case home = 0
     case search
@@ -70,8 +77,7 @@ struct ContentView: View {
                     LibraryView()
                 }
             }
-            .padding(.horizontal, 15)
-            .ignoresSafeArea(edges: .bottom)
+            .padding(.horizontal, Main.spaces.horizontal)
             HStack(alignment: .top) {
                 ForEach(TabbedPages.allCases, id: \.self) { page in
                     VStack {
@@ -98,7 +104,6 @@ struct ContentView: View {
         .ignoresSafeArea(edges: .bottom)
         .preferredColorScheme(.dark)
     }
-        
 }
 
 struct ContentView_Previews: PreviewProvider {

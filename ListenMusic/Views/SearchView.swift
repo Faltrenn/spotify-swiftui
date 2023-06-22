@@ -109,7 +109,6 @@ struct SearchView: View {
             }
             .ignoresSafeArea(edges: .bottom)
             .clipped()
-
         }
         .navigationTransition(.fade(.in).animation(.linear(duration: 0.1)))
     }
@@ -174,7 +173,6 @@ struct Search2: View {
                 }
             }
         }
-        
     }
 }
 

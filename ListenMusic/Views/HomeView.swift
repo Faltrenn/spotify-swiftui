@@ -182,7 +182,7 @@ struct HomeView: View {
                             PlaylistCard(name: "FK", author: "manel", type: true)
                         }
                         GridRow {
-                            PlaylistCard(name: "DJ DELIPE ALVES", author: "Spotfy", type: false)
+                            PlaylistCard(name: "DJ FELIPE ALVES", author: "Spotfy", type: false)
                             PlaylistCard(name: "Brazilian Phonk Mano", author: "Spotify", type: false)
                         }
                         GridRow {
