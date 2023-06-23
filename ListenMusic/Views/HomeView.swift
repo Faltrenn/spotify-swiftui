@@ -199,6 +199,7 @@ struct HomeView: View {
                     
                 }
                 .padding(.bottom, 95)
+                .padding(.horizontal)
             }
             .ignoresSafeArea(edges: .bottom)
             .clipped()

@@ -77,7 +77,6 @@ struct ContentView: View {
                     LibraryView()
                 }
             }
-            .padding(.horizontal, Main.spaces.horizontal)
             HStack(alignment: .top) {
                 ForEach(TabbedPages.allCases, id: \.self) { page in
                     VStack {
@@ -85,7 +84,6 @@ struct ContentView: View {
                             .renderingMode(.template)
                         Text(page.title)
                             .font(.system(size: 10))
-
                     }
                     .foregroundColor(selectedPage == page ? .white : .gray)
                     .onTapGesture {
@@ -99,7 +97,7 @@ struct ContentView: View {
             .padding(.top, 15)
             .padding(.horizontal, 50)
             .frame(height: 95, alignment: .top)
-            .background(LinearGradient(colors: [.black.opacity(0.85), .black.opacity(0.95), .black], startPoint: .top, endPoint: .bottom))
+            .background(LinearGradient(colors: [.black.opacity(0.85), .black], startPoint: .top, endPoint: UnitPoint(x: 0.5, y: 0.4)))
         }
         .ignoresSafeArea(edges: .bottom)
         .preferredColorScheme(.dark)

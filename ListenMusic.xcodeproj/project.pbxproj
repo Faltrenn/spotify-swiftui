@@ -26,6 +26,7 @@
 		CC5049842A436D01006FC1F7 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5049832A436D01006FC1F7 /* LibraryView.swift */; };
 		CC5049862A436D4E006FC1F7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5049852A436D4E006FC1F7 /* HomeView.swift */; };
 		CC5049882A436DE1006FC1F7 /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5049872A436DE1006FC1F7 /* PlaylistView.swift */; };
+		CCE356792A44FA740085CC4C /* MediaPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE356782A44FA740085CC4C /* MediaPlayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		CC5049832A436D01006FC1F7 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		CC5049852A436D4E006FC1F7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CC5049872A436DE1006FC1F7 /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
+		CCE356782A44FA740085CC4C /* MediaPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				CC5049832A436D01006FC1F7 /* LibraryView.swift */,
 				CC5049852A436D4E006FC1F7 /* HomeView.swift */,
 				CC5049872A436DE1006FC1F7 /* PlaylistView.swift */,
+				CCE356782A44FA740085CC4C /* MediaPlayerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				CC3A67862A3A3FD0001FA21E /* IndexStore.swift in Sources */,
 				CC3296102A40C344007F4941 /* SearchView.swift in Sources */,
 				CC3A67722A3A0F85001FA21E /* IndexViewModel.swift in Sources */,
+				CCE356792A44FA740085CC4C /* MediaPlayerView.swift in Sources */,
 				CC5049842A436D01006FC1F7 /* LibraryView.swift in Sources */,
 				CC5049862A436D4E006FC1F7 /* HomeView.swift in Sources */,
 				CC3A67832A3A3F10001FA21E /* IndexModel.swift in Sources */,

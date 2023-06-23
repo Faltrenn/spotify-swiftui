@@ -106,6 +106,7 @@ struct SearchView: View {
                     }
                 }
                 .padding(.bottom, 95)
+                .padding(.horizontal)
             }
             .ignoresSafeArea(edges: .bottom)
             .clipped()
@@ -172,6 +173,7 @@ struct Search2: View {
                     }
                 }
             }
+            .padding(.horizontal)
         }
     }
 }

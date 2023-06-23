@@ -159,6 +159,7 @@ struct LibraryView: View {
                 .padding(.bottom, 95)
             }
         }
+        .padding(.horizontal)
     }
 }
 
