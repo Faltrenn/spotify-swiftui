@@ -57,7 +57,7 @@ struct SearchView: View {
     @State var scroll = CGFloat.zero
     @State var position = CGFloat.zero
     var body: some View {
-        NavigationStack(path: $path.animation(.easeOut(duration: 1))) {
+        NavigationStack {
             TrackableScrollView(contentOffset: $scroll) {
                 VStack(alignment: .leading) {
                     
@@ -80,19 +80,19 @@ struct SearchView: View {
                                 Spacer()
                             }
                             .padding(.vertical, 10)
-                            .padding(.horizontal, 15)
+                            .padding(.horizontal)
                             .background(.white)
                             .cornerRadius(7)
                         }
                         .padding(.vertical, 15)
-                        .background(.black)
+                        .background(CustomColors.primary)
                         .offset(CGSize(width: 0, height: scroll > 87 ? scroll - 87 : 0))
                     }
                     .zIndex(1)
 
                     Text("Browse All")
                         .bold()
-                        .font(.system(size: 18))
+                        .font(.system(size: 17))
                         .padding(.vertical, 10)
                     
                     Grid(horizontalSpacing: 15, verticalSpacing: 15) {
@@ -110,6 +110,7 @@ struct SearchView: View {
             }
             .ignoresSafeArea(edges: .bottom)
             .clipped()
+            .background(CustomColors.primary)
         }
         .navigationTransition(.fade(.in).animation(.linear(duration: 0.1)))
     }
@@ -117,69 +118,94 @@ struct SearchView: View {
 
 struct Search2: View {
     @State var input = ""
+    
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
-                HStack {
-                    Image("arrow.back")
-                        .resizable()
-                        .renderingMode(.template)
-                        .foregroundColor(.white)
-                        .frame(width: 30, height: 30)
-                    TextField(
-                        "",
-                        text: $input,
-                        prompt: Text("What do you want to listen to?")
-                            .foregroundColor(.gray)
-                    )
-                    .foregroundColor(.gray)
-                    .cornerRadius(5)
-                    .font(.system(size: 18))
-                    
-                    Image("close")
-                        .resizable()
-                        .renderingMode(.template)
-                        .foregroundColor(.white)
-                        .frame(width: 20, height: 20)
-                }
-                .padding()
-                .background(.white.opacity(0.15))
-                .cornerRadius(7)
-                
-                Text("Recent searches")
-                    .bold()
-                    .font(.system(size: 18))
-                    .padding(.vertical, 10)
-                
-                ForEach(0...9, id: \.self) { _ in
+        ZStack(alignment: .top) {
+            GeometryReader { geo in
+                HStack(spacing: 20) {
                     HStack {
-                        Rectangle()
-                            .fill(.red)
-                            .frame(width: 45, height: 45)
-                        VStack(alignment: .leading) {
-                            Text("Nome da música")
-                                .font(.system(size: 15))
-                                .bold()
-                            Text("Nome do artista")
-                                .foregroundColor(.gray)
-                                .font(.system(size: 13))
-                        }
-                        Spacer()
-                        Image("close")
+                        Image("search")
                             .resizable()
                             .renderingMode(.template)
                             .foregroundColor(.white)
-                            .frame(width: 25, height: 25)
+                            .frame(width: 16, height: 16)
+                        TextField(
+                            "",
+                            text: $input,
+                            prompt:
+                                Text("What do you want to listen to?")
+                                    .foregroundColor(.gray)
+                        )
+                        .foregroundColor(.gray)
+                        .cornerRadius(5)
+                        .font(.system(size: 15))
+                    }
+                    .padding(.horizontal, 5)
+                    .padding(.vertical, 5)
+                    .background(Color(red: 0.14, green: 0.14, blue: 0.14))
+                    .cornerRadius(7)
+                    
+                    Button {
+                        dismiss.callAsFunction()
+
+                    } label: {
+                        Text("Cancel")
+                            .font(.system(size: 16))
+                            .foregroundColor(.white)
                     }
                 }
+                .padding(.top, geo.safeAreaInsets.top)
+                .padding(.horizontal)
+                .padding(.bottom, 8)
+                .zIndex(1)
+                .background(CustomColors.secondary)
+                .ignoresSafeArea(edges: .top)
+                
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 20) {
+                        Text("Recent searches")
+                            .bold()
+                            .font(.system(size: 18))
+                            .padding(.vertical, 10)
+                        
+                        ForEach(0...9, id: \.self) { _ in
+                            HStack {
+                                Rectangle()
+                                    .fill(.red)
+                                    .frame(width: 45, height: 45)
+                                VStack(alignment: .leading) {
+                                    Text("Nome da música")
+                                        .font(.system(size: 15))
+                                        .bold()
+                                    Text("Nome do artista")
+                                        .foregroundColor(.gray)
+                                        .font(.system(size: 13))
+                                }
+                                Spacer()
+                                Image("close")
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .foregroundColor(.white)
+                                    .frame(width: 25, height: 25)
+                            }
+                        }
+                    }
+                    .padding(.horizontal)
+                    .padding(.top, geo.safeAreaInsets.top)
+                }
             }
-            .padding(.horizontal)
         }
+        .background(CustomColors.primary)
+
+        .navigationBarBackButtonHidden()
     }
 }
 
 struct Search_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(selectedPage: .search)
+            .preferredColorScheme(.dark)
     }
 }

@@ -83,13 +83,7 @@ struct PlaylistView: View {
             ZStack(alignment: .top) {
                 LinearGradient(colors: [.purple, .black], startPoint: UnitPoint(x: 0.5, y: gradientHeightTop), endPoint: UnitPoint(x: 0.5, y: gradientHeightBottom)).edgesIgnoringSafeArea(.all)
                 ZStack(alignment: .top) {
-                    HStack {
-                        Image(systemName: "chevron.left")
-                            .font(.title3)
-                        Spacer()
-                    }
-                    .padding(.horizontal)
-                    .zIndex(1)
+                    
                     Rectangle()
                         .fill(.red)
                         .opacity(imageOpacity)
@@ -182,7 +176,13 @@ struct PlaylistView: View {
                     .clipped()
                 }
             }
+            .toolbar {
+                Image(systemName: "chevron.left")
+                    .font(.title3)
+                
+            }
         }
+        
     }
 }
 

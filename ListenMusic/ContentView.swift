@@ -18,6 +18,13 @@ struct Env {
     static let apiUrl = ips[1]
 }
 
+struct CustomColors {
+    static let cards = Color("Card")
+    static let primary = Color("Primary")
+    static let secondary = Color("Secondary")
+    static let terciary = Color("Tertiary")
+}
+
 struct Main {
     static let screen = UIScreen.main.bounds.size
     struct spaces {
@@ -77,6 +84,7 @@ struct ContentView: View {
                     LibraryView()
                 }
             }
+            
             HStack(alignment: .top) {
                 ForEach(TabbedPages.allCases, id: \.self) { page in
                     VStack {
@@ -97,7 +105,7 @@ struct ContentView: View {
             .padding(.top, 15)
             .padding(.horizontal, 50)
             .frame(height: 95, alignment: .top)
-            .background(LinearGradient(colors: [.black.opacity(0.85), .black], startPoint: .top, endPoint: UnitPoint(x: 0.5, y: 0.4)))
+            .background(LinearGradient(colors: [CustomColors.primary.opacity(0.9),  CustomColors.primary], startPoint: .top, endPoint: .center))
         }
         .ignoresSafeArea(edges: .bottom)
         .preferredColorScheme(.dark)

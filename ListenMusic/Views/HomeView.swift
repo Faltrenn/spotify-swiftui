@@ -28,9 +28,7 @@ struct PlaylistCard : View {
     let name: String
     let author: String
     let type: Bool
-    
-    let color: Color = .white.opacity(0.15)
-    
+        
     var body: some View {
         NavigationLink(destination: PlaylistView(name: name, author: author)) {
             HStack {
@@ -62,9 +60,10 @@ struct PlaylistCard : View {
                 Text(name)
                     .font(.system(size: 16))
                     .multilineTextAlignment(.leading)
+                    .foregroundColor(.primary)
                 Spacer()
             }
-            .background(color)
+            .background(CustomColors.cards)
             .frame(height: 50)
             .cornerRadius(5)
             .bold()
@@ -116,7 +115,7 @@ struct NewMusic: View {
                 .padding(.horizontal)
                 .frame(width: UIScreen.main.bounds.width * 0.56)
             }
-            .background(.gray)
+            .background(CustomColors.cards)
             .cornerRadius(5)
         }
     }
@@ -151,9 +150,6 @@ struct MixCard: View {
 }
 
 struct HomeView: View {
-    
-    let color: Color = .white.opacity(0.15)
-    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -165,13 +161,13 @@ struct HomeView: View {
                             .font(.system(size: 14))
                             .padding(.horizontal, 15)
                             .padding(.vertical, 10)
-                            .background(color)
+                            .background(CustomColors.cards)
                             .cornerRadius(30)
                         Text("Podcasts e programas")
                             .font(.system(size: 14))
                             .padding(.horizontal, 15)
                             .padding(.vertical, 10)
-                            .background(color)
+                            .background(CustomColors.cards)
                             .cornerRadius(30)
                         Spacer()
                     }
@@ -203,6 +199,7 @@ struct HomeView: View {
             }
             .ignoresSafeArea(edges: .bottom)
             .clipped()
+            .background(CustomColors.primary)
         }
     }
 }
@@ -210,5 +207,6 @@ struct HomeView: View {
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .background(.red)
     }
 }
