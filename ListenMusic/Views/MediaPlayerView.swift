@@ -31,6 +31,8 @@ struct MediaPlayerView: View {
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
     var step = (Main.screen.width - 57.5) / 100
+    
+    @Environment(\.dismiss) var dismiss
         
     func getFormatedTime(time: CGFloat) -> String {
         let minutes = floor(time / 60)
@@ -45,6 +47,9 @@ struct MediaPlayerView: View {
                 VStack(alignment: .leading) {
                     HStack {
                         Image(systemName: "chevron.down")
+                            .onTapGesture {
+                                dismiss.callAsFunction()
+                            }
                         Spacer()
                         Text("Playlist")
                             .font(.system(size: 17))

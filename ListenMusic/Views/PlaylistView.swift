@@ -76,12 +76,22 @@ struct PlaylistView: View {
     @State var gradientHeightBottom: CGFloat = 0.5
     @State var gradientHeightTop: CGFloat = 0
     
+    @Environment(\.dismiss) var dismiss
+    
     let screenWidth = Main.screen.width
     
     var body: some View {
         NavigationStack {
-            ZStack(alignment: .top) {
+            ZStack(alignment: .topLeading) {
                 LinearGradient(colors: [.purple, .black], startPoint: UnitPoint(x: 0.5, y: gradientHeightTop), endPoint: UnitPoint(x: 0.5, y: gradientHeightBottom)).edgesIgnoringSafeArea(.all)
+                Image(systemName: "chevron.left")
+                    .font(.title2)
+                    .padding(.horizontal)
+                    .zIndex(1)
+                    .onTapGesture {
+                        dismiss.callAsFunction()
+                    }
+                
                 ZStack(alignment: .top) {
                     
                     Rectangle()
@@ -176,13 +186,8 @@ struct PlaylistView: View {
                     .clipped()
                 }
             }
-            .toolbar {
-                Image(systemName: "chevron.left")
-                    .font(.title3)
-                
-            }
         }
-        
+        .navigationBarBackButtonHidden()
     }
 }
 

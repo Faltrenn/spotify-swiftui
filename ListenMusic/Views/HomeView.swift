@@ -113,7 +113,7 @@ struct NewMusic: View {
                     .padding(.top, 5)
                 }
                 .padding(.horizontal)
-                .frame(width: UIScreen.main.bounds.width * 0.56)
+                .frame(width: Main.screen.width * 0.56)
             }
             .background(CustomColors.cards)
             .cornerRadius(5)
